@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Layout from './components/layout';
 import Home from './routes/home';
@@ -7,6 +7,9 @@ import Login from './routes/login';
 import CreateAccount from './routes/create-account';
 import { createGlobalStyle } from 'styled-components';
 import reset from "styled-reset";
+import LoadingScreen from './components/loading-screen';
+
+import { auth } from './routes/firebase';
 
 const router = createBrowserRouter([
   {
@@ -46,9 +49,22 @@ const GlobalStyles = createGlobalStyle`
  `;
 
 function App() {
+
+  const [isLoading, setLoading] = useState(true);
+  const init = async() => {
+    
+    await auth.authStateReady();
+              // Firebase가 쿠키와 토큰을 읽고 백엔드와 소통해서 로그인여부를 확인하는 동안 기다림
+    setLoading(false);
+  };
+
+  useEffect(()=>{
+    init();
+  },[]);
+   
   return <>
     <GlobalStyles />
-    <RouterProvider router = {router} />
+    {isLoading ? <LoadingScreen /> : <RouterProvider router = {router} />}
   </>;
 }
 
