@@ -10,19 +10,38 @@ import reset from "styled-reset";
 import LoadingScreen from './components/loading-screen';
 
 import { auth } from './routes/firebase';
+import ProtectedRoute from './routes/protected-route';
 
 const router = createBrowserRouter([
   {
     path:"/",
-    element:<Layout />,
+    element:
+    /*
+      <Layout />,
+    */
+    <ProtectedRoute>
+      <Layout />
+    </ProtectedRoute>,
     children: [
       {
         path: "",
-        element: <Home />
+        element: 
+       /*  
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute> 
+        */
+        <Home />
       },
       {
         path: "profile",
-        element: <Profile />
+        element:
+        /* 
+        <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>
+        */
+        <Profile />
       }
     ]
   },
