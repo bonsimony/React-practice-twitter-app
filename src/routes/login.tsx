@@ -4,6 +4,7 @@ import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 import { Error, Form, Input, Switcher, Title, Wrapper } from "../components/auth-components";
+import GithunButton from "../components/github-btn";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ export default function Login() {
       <Switcher>
         Don't have an accrount? <Link to="/create-account">Create one &rarr;</Link>
       </Switcher>
+      <GithunButton />
     </Wrapper>
   );
 }

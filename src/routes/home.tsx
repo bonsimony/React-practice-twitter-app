@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { auth } from "./firebase";
 
 export default function Home(){
