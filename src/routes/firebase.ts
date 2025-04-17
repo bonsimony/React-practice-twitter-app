@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 import {getAuth} from "firebase/auth";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
 /* 
   도메인, api ket 등 여러가지 키 값들이 포함된 config 개체를 
@@ -26,4 +28,12 @@ const analytics = getAnalytics(app);
 /*
   app에 대한 인증 서비스를 사용한다.
 */
-export const auth = getAuth(app)
+export const auth = getAuth(app);
+
+
+/*
+  데이터베이스와 스토리지에 대한 엑세스 권한을 얻는다.
+*/
+export const storeage = getStorage(app);
+
+export const db = getFirestore(app);

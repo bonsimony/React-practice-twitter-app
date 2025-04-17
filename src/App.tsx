@@ -5,12 +5,22 @@ import Home from './routes/home';
 import Profile from './routes/profile';
 import Login from './routes/login';
 import CreateAccount from './routes/create-account';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import reset from "styled-reset";
 import LoadingScreen from './components/loading-screen';
 
 import { auth } from './routes/firebase';
 import ProtectedRoute from './routes/protected-route';
+
+const Wrapper = styled.div`
+  height: 100vh;                          /* 화면 전체 높이를 기준으로 중앙 정렬 */ 
+  display: flex;
+  justify-content: center;                /* 수평 중앙 */
+  align-items: center;                    /* 수직 중앙 */
+  flex-direction: column;
+  margin: 0 auto;                         /* 화면 가운데로 */
+  padding: 50px 0px;
+`;
 
 const router = createBrowserRouter([
   {
@@ -19,9 +29,11 @@ const router = createBrowserRouter([
     /*
       <Layout />,
     */
-    <ProtectedRoute>
-      <Layout />
-    </ProtectedRoute>,
+    <Wrapper>
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    </Wrapper>,  
     children: [
       {
         path: "",
