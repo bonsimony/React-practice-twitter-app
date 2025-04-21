@@ -70,7 +70,6 @@ export default function Tweet({username, photo, tweet, userId, id} : ITweet){
             <Username>{username}</Username>
             <Payload>{tweet}</Payload>
             {user?.uid === userId ? <DeleteButton onClick={onDelete}>Delete</DeleteButton> : null}
-            
         </Column>  
 
         {photo ? (
